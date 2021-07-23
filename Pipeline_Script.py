@@ -15,14 +15,14 @@ from shutil import copy
 
 os.mkdir("Output")
 files = os.listdir('.')
-pdf_files = []
+fastq_files = []
 
 for filename in files:
         if filename.endswith(".fq"):
-            pdf_files.append(filename)
+            fastq_files.append(filename)
            
 
-print(f"Your directory contains these fastq files: {pdf_files}\nThese will now be copied into the Script Directory. Please wait...")
+print(f"Your directory contains these fastq files: {fastq_files}\nThese will now be copied into the Script Directory. Please wait...")
 
 destination = os.getcwd()
 final=os.path.join(destination, "Output")
@@ -45,8 +45,8 @@ def progressbar(it, prefix="", size=60, file=sys.stdout):
 #Copying files
 
 for i in progressbar(range(2), "Copying Files: ", 60):
-    copy(pdf_files[0], final)
-    copy(pdf_files[1], final)
+    copy(fastq_files[0], final)
+    copy(fastq_files[1], final)
 
 print("Files successfully copied. Sequence Assembly will now start..")
 
@@ -54,8 +54,8 @@ print("Files successfully copied. Sequence Assembly will now start..")
 
 def file_rename():
     os.chdir(final)
-    os.rename(pdf_files[0], "forward.fq")
-    os.rename(pdf_files[1], "reverse.fq")
+    os.rename(fastq_files[0], "forward.fq")
+    os.rename(fastq_files[1], "reverse.fq")
 
 
 file_rename()
